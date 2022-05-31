@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encrypt Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+  </head>
+  <body class="h-screen justify-between">
+    <header class="text-gray-400 bg-gray-900 body-font">
+      <div
+        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+      >
+        <a
+          href="../index.html"
+          class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+        >
+          <div class="w-9 h-9 rounded-full bg-zinc-100 display-block margin-0">
+            <div class="w-7 h-7 display-block m-1">
+              <img src="../images/symbols/shield.png" />
+            </div>
+          </div>
+          <span class="ml-3 text-xl">Encrypt Hub</span>
+        </a>
+        <nav
+          class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+        >
+          <a href="rsa.html" class="mr-5 hover:text-indigo-500"
+            >RSA</a
+          >
+          <a href="aes.html" class="mr-5 hover:text-indigo-500"
+            >AES</a
+          >
+          <a href="dsa.html" class="mr-5 hover:text-indigo-500"
+            >DSA</a
+          >
+          <a href="sha2.html" class="mr-5 hover:text-indigo-500"
+            >SHA2</a
+          >
+        </nav>
+      </div>
+    </header>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full">
+          <h2
+            class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-2"
+          >
+            Secure way to encrypt and decrypt large data
+          </h2>
+          <h1
+            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+          >
+            AES: Fast Symmetric Encryption
+          </h1>
+        </div>
+        <hr />
+        <hr />
+        <br />
+        <br />
+        <img
+          class="mx-auto"
+          src="../images/diagrams/symmetric-encryption-diagram.png"
+          alt=""
+        />
+        <br />
+        <br />
+        <hr />
+        <hr />
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mt-4 mx-auto flex flex-wrap">
+            <h2
+              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+            >
+              What is AES Actually
+            </h2>
+            <div class="md:w-3/5 md:pl-6">
+              <p class="leading-relaxed text-base">
+                AES is the most common symmetric encryption algorithm used
+                today, it is called symmetric because there is one key to do
+                both the encryption and decryption of the information, this
+                allows it to encrypt and decrypt data much faster than other
+                asymmetric encryption algorithms such as RSA
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mx-auto flex flex-wrap">
+            <h2
+              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+            >
+              How is AES Used
+            </h2>
+            <div class="md:w-3/5 md:pl-6">
+              <p class="leading-relaxed text-base">
+                AES is used all around the internet to encrypt arbitrary data,
+                it can be used to encrypt plaintext, images, videos, or any
+                other kind of file, it can be used for things on local computers
+                as well as through the internet, for example if you wanted to
+                encrypt a folder on your computer you could do it with AES so
+                that it would not be comprimised if your computer or drive fell
+                into the wrong hands
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mx-auto flex flex-wrap">
+            <h2
+              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+            >
+              Block modes of AES
+            </h2>
+            <div class="md:w-3/5 md:pl-6">
+              <p class="leading-relaxed text-base">
+                ECB) Electronic Code Book was the first mode of aes theorized,
+                in this mode data is divided into blocks, padded, then encrypted
+                all with the same key, which means it can use a passcode, but it
+                is no longer considered secure and should never be used for real
+                security<br />
+                CBC) Cipher Block Chaining, in this mode data is divided into
+                blocks, padded, then encrypted with different codes using an IV
+                or initialization vector, it is generally secure but does not
+                provide data integrity across sending<br />
+                <br />
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mx-auto flex flex-wrap">
+            <h2
+              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+            >
+              Stream modes of AES
+            </h2>
+            <div class="md:w-3/5 md:pl-6">
+              <p class="leading-relaxed text-base">
+                CFB) Cipher FeedBack is an AES mode which does not need padding,
+                and uses ciphertext feedback to encode other blocks, it is
+                generally secure but can be insecure to forging and bad blocks
+                corrupt all future blocks<br />
+                OFB) output feedback creates a stream independent of the
+                plaintext, it needs to create an independent nonce or IV for
+                each message. It is generally secure and bad bits dont affect
+                other bits.<br />
+                CTR) Counter mode works by encoding the blocks using a count and
+                it is the fastest mode, it is not affected downstream by broken
+                blocks, it is generally very secure, but the counter must be
+                changed at times to maintain security<br />
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mx-auto flex flex-wrap">
+            <h2
+              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+            >
+              How does AES Work
+            </h2>
+            <div class="md:w-3/5 md:pl-6">
+              <p class="leading-relaxed text-base">
+                1) Create an AES key <br />
+                2) Encrypt the data with the AES key <br />
+                3) Securely share the key with the recipient <br />
+                4) Decrypt the data with the recieved key
+              </p>
+            </div>
+          </div>
+        </section>
+        <br />
+        <br />
+        <hr />
+      </div>
+    </section>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 mb-24 mx-auto flex flex-wrap">
+        <div class="flex flex-wrap -m-4">
+          <div class="p-4 lg:w-1/2 md:w-full">
+            <div
+              class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
+            >
+              <div
+                class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
+              >
+                <div class="w-12">
+                  <img src="../images/symbols/lock-closed.svg" alt="" />
+                </div>
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-gray-900 text-lg title-font font-medium mb-0">
+                  CTR AES Encryption
+                </h2>
+                <p class="leading-relaxed text-base mb-3">
+                  Generate Key, Nonce, and Ciphertext from Plaintext
+                </p>
+                <div class="relative">
+                  <label for="message" class="leading-7 text-sm text-indigo-600"
+                    >Plaintext</label
+                  >
+                  <input
+                    id="message"
+                    name="message"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <button
+                  class="flex mx-right mt-3 mb-3 text-white bg-indigo-500 border-0 px-8 py-1 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                >
+                  Generate
+                </button>
+                <div class="relative">
+                  <label for="modulo" class="leading-7 text-sm text-indigo-600"
+                    >Ciphertext</label
+                  >
+                  <input
+                    id="modulo"
+                    name="modulo"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <div class="relative">
+                  <label for="pubkey" class="leading-7 text-sm text-indigo-600"
+                    >Key</label
+                  >
+                  <input
+                    id="pubkey"
+                    name="pubkey"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <div class="relative">
+                  <label
+                    for="encrypt-ciphertext"
+                    class="leading-7 text-sm text-indigo-600"
+                    >Nonce</label
+                  >
+                  <p
+                    id="encrypt-ciphertext"
+                    name="ciphertext"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 lg:w-1/2 md:w-full">
+            <div
+              class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
+            >
+              <div
+                class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
+              >
+                <div class="w-11">
+                  <img src="../images/symbols/lock-open.svg" alt="" />
+                </div>
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-gray-900 text-lg title-font font-medium mb-0">
+                  CTR AES Decryption
+                </h2>
+                <p class="leading-relaxed text-base mb-3">
+                  Generate message from C, N, D
+                </p>
+                <div class="relative">
+                  <label
+                    for="decrypt-ciphertext"
+                    class="leading-7 text-sm text-indigo-600"
+                    >Ciphertext (C)</label
+                  >
+                  <input
+                    id="decrypt-ciphertext"
+                    name="ciphertext"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <div class="relative">
+                  <label
+                    for="decrypt-modulo"
+                    class="leading-7 text-sm text-indigo-600"
+                    >Modulo (N)</label
+                  >
+                  <input
+                    id="decrypt-modulo"
+                    name="modulo"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <div class="relative">
+                  <label
+                    for="decrypt-privkey"
+                    class="leading-7 text-sm text-indigo-600"
+                    >Private Key (D)</label
+                  >
+                  <input
+                    id="decrypt-privkey"
+                    name="pubkey"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  />
+                </div>
+                <button
+                  class="flex mx-right mt-3 mb-3 text-white bg-indigo-500 border-0 px-8 py-1 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                >
+                  Generate
+                </button>
+                <div class="relative">
+                  <label
+                    for="decrypt-ciphertext"
+                    class="leading-7 text-sm text-indigo-600"
+                    >Message (M)</label
+                  >
+                  <p
+                    id="decrypt-ciphertext"
+                    name="ciphertext"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="sticky top-[100vh] text-gray-400 bg-gray-900 body-font">
+      <div
+        class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
+      >
+        <a
+          class="flex title-font font-medium items-center md:justify-start justify-center text-white"
+        >
+          <div class="w-7 h-7 rounded-full bg-zinc-100 display-block margin-0">
+            <div class="w-5 h-5 display-block m-1">
+              <img src="../images/symbols/shield.png" />
+            </div>
+          </div>
+          <span class="ml-3 text-l">Encrypt Hub</span>
+        </a>
+        <p
+          id="a_melidee"
+          class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4"
+        >
+          © 2020 Encrypt Hub —
+          <a
+            href="https://twitter.com/A_Melidee"
+            class="text-gray-500 ml-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            >@A_Melidee</a
+          >
+        </p>
+        <span
+          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"
+        >
+          <a
+            id="github"
+            href="https://github.com/Melidee"
+            class="text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="../images/social_logos/github.png" />
+            </div>
+          </a>
+          <a
+            id="twitter"
+            href="https://twitter.com/A_Melidee"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="../images/social_logos/twitter.png" />
+            </div>
+          </a>
+          <a
+            id="instagram"
+            href="https://www.instagram.com/a_melidee/"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="../images/social_logos/instagram.png" />
+            </div>
+          </a>
+          <a
+            id="linkedin"
+            href="www.linkedin.com/in/melidee"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="../images/social_logos/linkedin.png" />
+            </div>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
