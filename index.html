@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encrypt Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+  </head>
+  <body class="h-screen justify-between">
+    <header class="text-gray-400 bg-gray-900 body-font">
+      <div
+        class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+      >
+        <a
+          href=""
+          class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+        >
+          <div class="w-9 h-9 rounded-full bg-zinc-100 display-block margin-0">
+            <div class="w-7 h-7 display-block m-1">
+              <img src="images/symbols/shield.png" />
+            </div>
+          </div>
+          <span class="ml-3 text-xl">Encrypt Hub</span>
+        </a>
+        <nav
+          class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+        >
+        <a href="technologies/rsa.html" class="mr-5 hover:text-indigo-500">RSA</a>
+        <a href="technologies/aes.html" class="mr-5 hover:text-indigo-500">AES</a>
+        <a href="technologies/dsa.html" class="mr-5 hover:text-indigo-500">DSA</a>
+        <a href="technologies/sha2.html" class="mr-5 hover:text-indigo-500">SHA2</a>
+        </nav>
+      </div>
+    </header>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full">
+          <h2
+            class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"
+          >
+            Encryption Education
+          </h2>
+          <h1
+            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+          >
+            Encrypt Hub
+          </h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+            Security is imperative to our usage of the web every day, and
+            through encryption of various types we can confidently browse the
+            web and use services without worrying about secure information
+            getting released such as passwords, credit card details, private
+            messaging and email, as well as much much more
+          </p>
+        </div>
+        <br />
+        <br />
+        <hr />
+      </div>
+    </section>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 mx-auto">
+        <div class="-my-8 divide-y-2 divide-gray-100">
+          <div class="py-8 flex flex-wrap md:flex-nowrap">
+            <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+              <div class="w-20 h-20">
+                <img src="images/symbols/handshake.png" alt="" />
+              </div>
+              <span class="font-semibold title-font text-gray-700"
+                >Public-Key Cryptography</span
+              >
+              <span class="mt-1 text-gray-500 text-sm"
+                >RSA - Rivest Shamir Adleman</span
+              >
+            </div>
+            <div class="md:flex-grow">
+              <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                Hide Shared Information From Interceptors
+              </h2>
+              <p class="leading-relaxed">
+                Public-Key Cryptography is a type of cryptography that allows
+                two users to send information from one to each other in a way
+                that cannot be broken if a malicious user intercepts the message
+                while in transit, it does this by using multiple components,
+                such as public and private keys, it is highly secure and is
+                commonly used for applications such as sharing vital small
+                amounts of information like sensitive messages and encryption
+                keys, examples of this are the RSA and ECC algorithms
+              </p>
+              <a
+                href="rsa/"
+                class="text-indigo-500 inline-flex items-center mt-4"
+                >Learn More
+                <svg
+                  class="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="py-8 flex flex-wrap md:flex-nowrap">
+            <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+              <div>
+                <img src="images/symbols/folder.png" alt="" />
+              </div>
+              <span class="font-semibold title-font text-gray-700"
+                >Symmetric Encryption</span
+              >
+              <span class="mt-1 text-gray-500 text-sm"
+                >AES - Advanced Encryption Standard
+              </span>
+            </div>
+            <div class="md:flex-grow">
+              <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                Securely and Quickly Encrypt Large Data
+              </h2>
+              <p class="leading-relaxed">
+                Symmetric encryption is a type of encryption which uses a single
+                key to securely encode and decode information, it is very useful
+                for encrypting large amounts of data quickly and efficiently,
+                because of this it is commonly used for protecting files like
+                documents, photos, emails, applications, and more, symmetric
+                encryption is the most common type of encryption people are
+                familiar with, examples of this are the AES and DES algorithms
+              </p>
+              <a
+                href="aes/"
+                class="text-indigo-500 inline-flex items-center mt-4"
+                >Learn More
+                <svg
+                  class="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="py-8 flex flex-wrap md:flex-nowrap">
+            <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+              <div class="w-20 h-20">
+                <img src="images/symbols/signature.png" alt="" />
+              </div>
+              <span class="font-semibold title-font text-gray-700"
+                >Digital Signatures</span
+              >
+              <span class="mt-1 text-gray-500 text-sm"
+                >DSA - Digital Signature Algorithm</span
+              >
+            </div>
+            <div class="md:flex-grow">
+              <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                Prove Authenticity of Data and Messages
+              </h2>
+              <p class="leading-relaxed">
+                Digital signatures are important to secure data transfer accross
+                the web, it provides a way to verify the authenticity of
+                messages being sent accross the internet, which is necessary to
+                prevent forging of requests and verifying the identity of hosts,
+                it is used in most every portion of the web incuding email,
+                messaging, web requests, and more, examples of this are the DSA
+                and RSA algorithms
+              </p>
+              <a
+                href="dsa/"
+                class="text-indigo-500 inline-flex items-center mt-4"
+                >Learn More
+                <svg
+                  class="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="py-8 flex flex-wrap md:flex-nowrap">
+            <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+              <div class="w-20 h-20">
+                <img src="images/symbols/hidden.png" alt="" />
+              </div>
+              <span class="font-semibold title-font text-gray-700"
+                >Hashing Algorithms</span
+              >
+              <span class="text-sm text-gray-500"
+                >SHA2 - Secure Hash Algorithm</span
+              >
+            </div>
+            <div class="md:flex-grow">
+              <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">
+                Irreversable Encoding of Information
+              </h2>
+              <p class="leading-relaxed">
+                Hashing is the best way to make a one way conversion from data
+                to a string of seemingly random bytes, it is not reversable but
+                always provides the same output from the same input this is
+                important to the function of computers ans the web as a whole
+                for two main reasons, it allows sensitive information like
+                passwords to be stored as a hash so if they get breached they
+                cannot be used, and also to verify files or messages have not
+                been changed through checksums, examples of this are the SHA2
+                and MD5 algorithms
+              </p>
+              <a
+                href="sha2/"
+                class="text-indigo-500 inline-flex items-center mt-4"
+                >Learn More
+                <svg
+                  class="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+    </section>
+    <footer class="sticky top-[100vh] text-gray-400 bg-gray-900 body-font">
+      <div
+        class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
+      >
+        <a
+          class="flex title-font font-medium items-center md:justify-start justify-center text-white"
+        >
+          <div class="w-7 h-7 rounded-full bg-zinc-100 display-block margin-0">
+            <div class="w-5 h-5 display-block m-1">
+              <img src="images/symbols/shield.png" />
+            </div>
+          </div>
+          <span class="ml-3 text-l">Encrypt Hub</span>
+        </a>
+        <p
+          id="a_melidee"
+          class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4"
+        >
+          © 2020 Encrypt Hub —
+          <a
+            href="https://twitter.com/A_Melidee"
+            class="text-gray-500 ml-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            >@A_Melidee</a
+          >
+        </p>
+        <span
+          class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"
+        >
+          <a
+            id="github"
+            href="https://github.com/Melidee"
+            class="text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="images/social_logos/github.png" />
+            </div>
+          </a>
+          <a
+            id="twitter"
+            href="https://twitter.com/A_Melidee"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="images/social_logos/twitter.png" />
+            </div>
+          </a>
+          <a
+            id="instagram"
+            href="https://www.instagram.com/a_melidee/"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="images/social_logos/instagram.png" />
+            </div>
+          </a>
+          <a
+            id="linkedin"
+            href="www.linkedin.com/in/melidee"
+            class="ml-3 text-gray-400"
+          >
+            <div class="w-6 h-6 display-block">
+              <img src="images/social_logos/linkedin.png" />
+            </div>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
