@@ -9,7 +9,8 @@
     <script src="jquery-3.6.0.min.js"></script>
   </head>
   <body class="h-screen justify-between">
-    <header class="text-gray-400 bg-gray-900 body-font">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <header class="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
       <div
         class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       >
@@ -27,15 +28,17 @@
         <nav
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"
         >
-        <a href="technologies/rsa.html" class="mr-5 hover:text-indigo-500">RSA</a>
-        <a href="technologies/aes.html" class="mr-5 hover:text-indigo-500">AES</a>
-        <a href="technologies/dsa.html" class="mr-5 hover:text-indigo-500">DSA</a>
-        <a href="technologies/sha2.html" class="mr-5 hover:text-indigo-500">SHA2</a>
+          <a href="technologies/rsa/" class="mr-5 hover:text-indigo-500">RSA</a>
+          <a href="technologies/aes/" class="mr-5 hover:text-indigo-500">AES</a>
+          <a href="technologies/dsa/" class="mr-5 hover:text-indigo-500">DSA</a>
+          <a href="technologies/sha2/" class="mr-5 hover:text-indigo-500"
+            >SHA2</a
+          >
         </nav>
       </div>
     </header>
     <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
+      <div class="container px-5 pt-20 mx-auto">
         <div class="flex flex-col text-center w-full">
           <h2
             class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"
@@ -47,22 +50,30 @@
           >
             Encrypt Hub
           </h1>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Security is imperative to our usage of the web every day, and
-            through encryption of various types we can confidently browse the
-            web and use services without worrying about secure information
-            getting released such as passwords, credit card details, private
-            messaging and email, as well as much much more
-          </p>
+          <div>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base mb-4">
+              Security is imperative to our usage of the web every day, and
+              through encryption of various types we can confidently browse the
+              web and use services without worrying about secure information
+              getting released such as passwords, credit card details, private
+              messaging and email, as well as much much more
+            </p>
+          </div>
         </div>
-        <br />
-        <br />
-        <hr />
+      </div>
+      <div>
+        <hr class="bold" />
+        <img
+          class="mx-auto object-fill object-top w-2/3 my-8"
+          src="images/symbols/encryption_banner.png"
+          alt=""
+        />
+        <hr class="bold" />
       </div>
     </section>
     <section class="text-gray-600 body-font">
       <div class="container px-5 mx-auto">
-        <div class="-my-8 divide-y-2 divide-gray-100">
+        <div class="mb-17 mt-8 divide-y-2 divide-gray-100">
           <div class="py-8 flex flex-wrap md:flex-nowrap">
             <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
               <div class="w-20 h-20">
@@ -90,7 +101,7 @@
                 keys, examples of this are the RSA and ECC algorithms
               </p>
               <a
-                href="rsa/"
+                href="technologies/rsa/"
                 class="text-indigo-500 inline-flex items-center mt-4"
                 >Learn More
                 <svg
@@ -134,7 +145,7 @@
                 familiar with, examples of this are the AES and DES algorithms
               </p>
               <a
-                href="aes/"
+                href="technologies/aes/"
                 class="text-indigo-500 inline-flex items-center mt-4"
                 >Learn More
                 <svg
@@ -178,7 +189,7 @@
                 and RSA algorithms
               </p>
               <a
-                href="dsa/"
+                href="technologies/dsa/"
                 class="text-indigo-500 inline-flex items-center mt-4"
                 >Learn More
                 <svg
@@ -224,7 +235,7 @@
                 and MD5 algorithms
               </p>
               <a
-                href="sha2/"
+                href="technologies/sha2/"
                 class="text-indigo-500 inline-flex items-center mt-4"
                 >Learn More
                 <svg
