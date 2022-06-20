@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encrypt Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="jquery-3.6.0.min.js"></script>
   </head>
   <body class="h-screen justify-between">
-    <header class="text-gray-400 bg-gray-900 body-font">
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+    <header class="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
       <div
         class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       >
         <a
-          href="../index.html"
+          href="../../"
           class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
         >
           <div class="w-9 h-9 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-7 h-7 display-block m-1">
-              <img src="../images/symbols/shield.png" />
+              <img src="../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-xl">Encrypt Hub</span>
@@ -27,23 +27,15 @@
         <nav
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"
         >
-          <a href="rsa.html" class="mr-5 hover:text-indigo-500"
-            >RSA</a
-          >
-          <a href="aes.html" class="mr-5 hover:text-indigo-500"
-            >AES</a
-          >
-          <a href="dsa.html" class="mr-5 hover:text-indigo-500"
-            >DSA</a
-          >
-          <a href="sha2.html" class="mr-5 hover:text-indigo-500"
-            >SHA2</a
-          >
+          <a href="../rsa" class="mr-5 hover:text-indigo-500">RSA</a>
+          <a href="../aes" class="mr-5 hover:text-indigo-500">AES</a>
+          <a href="../dsa" class="mr-5 hover:text-indigo-500">DSA</a>
+          <a href="../sha2" class="mr-5 hover:text-indigo-500">SHA2</a>
         </nav>
       </div>
     </header>
     <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
+      <div class="container px-5 pb-4 pt-24 mx-auto">
         <div class="flex flex-col text-center w-full">
           <h2
             class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-2"
@@ -56,130 +48,124 @@
             AES: Fast Symmetric Encryption
           </h1>
         </div>
-        <hr />
-        <hr />
-        <br />
-        <br />
-        <img
-          class="mx-auto"
-          src="../images/diagrams/symmetric-encryption-diagram.png"
-          alt=""
-        />
-        <br />
-        <br />
-        <hr />
-        <hr />
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-5 mt-4 mx-auto flex flex-wrap">
-            <h2
-              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-            >
-              What is AES Actually
-            </h2>
-            <div class="md:w-3/5 md:pl-6">
-              <p class="leading-relaxed text-base">
-                AES is the most common symmetric encryption algorithm used
-                today, it is called symmetric because there is one key to do
-                both the encryption and decryption of the information, this
-                allows it to encrypt and decrypt data much faster than other
-                asymmetric encryption algorithms such as RSA
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-5 mx-auto flex flex-wrap">
-            <h2
-              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-            >
-              How is AES Used
-            </h2>
-            <div class="md:w-3/5 md:pl-6">
-              <p class="leading-relaxed text-base">
-                AES is used all around the internet to encrypt arbitrary data,
-                it can be used to encrypt plaintext, images, videos, or any
-                other kind of file, it can be used for things on local computers
-                as well as through the internet, for example if you wanted to
-                encrypt a folder on your computer you could do it with AES so
-                that it would not be comprimised if your computer or drive fell
-                into the wrong hands
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-5 mx-auto flex flex-wrap">
-            <h2
-              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-            >
-              Block modes of AES
-            </h2>
-            <div class="md:w-3/5 md:pl-6">
-              <p class="leading-relaxed text-base">
-                ECB) Electronic Code Book was the first mode of aes theorized,
-                in this mode data is divided into blocks, padded, then encrypted
-                all with the same key, which means it can use a passcode, but it
-                is no longer considered secure and should never be used for real
-                security<br />
-                CBC) Cipher Block Chaining, in this mode data is divided into
-                blocks, padded, then encrypted with different codes using an IV
-                or initialization vector, it is generally secure but does not
-                provide data integrity across sending<br />
-                <br />
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-5 mx-auto flex flex-wrap">
-            <h2
-              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-            >
-              Stream modes of AES
-            </h2>
-            <div class="md:w-3/5 md:pl-6">
-              <p class="leading-relaxed text-base">
-                CFB) Cipher FeedBack is an AES mode which does not need padding,
-                and uses ciphertext feedback to encode other blocks, it is
-                generally secure but can be insecure to forging and bad blocks
-                corrupt all future blocks<br />
-                OFB) output feedback creates a stream independent of the
-                plaintext, it needs to create an independent nonce or IV for
-                each message. It is generally secure and bad bits dont affect
-                other bits.<br />
-                CTR) Counter mode works by encoding the blocks using a count and
-                it is the fastest mode, it is not affected downstream by broken
-                blocks, it is generally very secure, but the counter must be
-                changed at times to maintain security<br />
-              </p>
-            </div>
-          </div>
-        </section>
-        <section class="text-gray-600 body-font">
-          <div class="container px-5 py-5 mx-auto flex flex-wrap">
-            <h2
-              class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-            >
-              How does AES Work
-            </h2>
-            <div class="md:w-3/5 md:pl-6">
-              <p class="leading-relaxed text-base">
-                1) Create an AES key <br />
-                2) Encrypt the data with the AES key <br />
-                3) Securely share the key with the recipient <br />
-                4) Decrypt the data with the recieved key
-              </p>
-            </div>
-          </div>
-        </section>
-        <br />
-        <br />
-        <hr />
       </div>
+      <hr />
+      <img
+        class="mx-auto mb-10"
+        src="../../images/diagrams/symmetric-encryption-diagram.png"
+        alt=""
+      />
+      <hr />
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mt-4 mx-auto flex flex-wrap">
+          <h2
+            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+          >
+            What is AES actually
+          </h2>
+          <div class="md:w-3/5 md:pl-6">
+            <p class="leading-relaxed text-base">
+              AES is the most common symmetric encryption algorithm used today,
+              it is called symmetric because there is one key to do both the
+              encryption and decryption of the information, this allows it to
+              encrypt and decrypt data much faster than other asymmetric
+              encryption algorithms such as RSA
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mx-auto flex flex-wrap">
+          <h2
+            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+          >
+            How is AES Used
+          </h2>
+          <div class="md:w-3/5 md:pl-6">
+            <p class="leading-relaxed text-base">
+              AES is used all around the internet to encrypt arbitrary data, it
+              can be used to encrypt plaintext, images, videos, or any other
+              kind of file, it can be used for things on local computers as well
+              as through the internet, for example if you wanted to encrypt a
+              folder on your computer you could do it with AES so that it would
+              not be comprimised if your computer or drive fell into the wrong
+              hands
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mx-auto flex flex-wrap">
+          <h2
+            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+          >
+            Block modes of AES
+          </h2>
+          <div class="md:w-3/5 md:pl-6">
+            <p class="leading-relaxed text-base">
+              ECB) Electronic Code Book was the first mode of aes theorized, in
+              this mode data is divided into blocks, padded, then encrypted all
+              with the same key, which means it can use a passcode, but it is no
+              longer considered secure and should never be used for real
+              security<br />
+              CBC) Cipher Block Chaining, in this mode data is divided into
+              blocks, padded, then encrypted with different codes using an IV or
+              initialization vector, it is generally secure but does not provide
+              data integrity across sending<br />
+              <br />
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mx-auto flex flex-wrap">
+          <h2
+            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+          >
+            Stream modes of AES
+          </h2>
+          <div class="md:w-3/5 md:pl-6">
+            <p class="leading-relaxed text-base">
+              CFB) Cipher FeedBack is an AES mode which does not need padding,
+              and uses ciphertext feedback to encode other blocks, it is
+              generally secure but can be insecure to forging and bad blocks
+              corrupt all future blocks<br />
+              OFB) output feedback creates a stream independent of the
+              plaintext, it needs to create an independent nonce or IV for each
+              message. It is generally secure and bad bits dont affect other
+              bits.<br />
+              CTR) Counter mode works by encoding the blocks using a count and
+              it is the fastest mode, it is not affected downstream by broken
+              blocks, it is generally very secure, but the counter must be
+              changed at times to maintain security<br />
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mx-auto flex flex-wrap">
+          <h2
+            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
+          >
+            How does AES Work
+          </h2>
+          <div class="md:w-3/5 md:pl-6">
+            <p class="leading-relaxed text-base">
+              1) Create an AES key <br />
+              2) Encrypt the data with the AES key <br />
+              3) Securely share the key with the recipient <br />
+              4) Decrypt the data with the recieved key
+            </p>
+          </div>
+        </div>
+      </section>
+      <br />
+      <br />
+      <hr />
     </section>
     <section class="text-gray-600 body-font">
       <div class="container px-5 mb-24 mx-auto flex flex-wrap">
-        <div class="flex flex-wrap -m-4">
+        <div class="flex flex-grow -m-4">
           <div class="p-4 lg:w-1/2 md:w-full">
             <div
               class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
@@ -188,7 +174,7 @@
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
                 <div class="w-12">
-                  <img src="../images/symbols/lock-closed.svg" alt="" />
+                  <img src="../../images/symbols/lock-closed.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
@@ -256,7 +242,7 @@
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
                 <div class="w-11">
-                  <img src="../images/symbols/lock-open.svg" alt="" />
+                  <img src="../../images/symbols/lock-open.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
@@ -264,13 +250,13 @@
                   CTR AES Decryption
                 </h2>
                 <p class="leading-relaxed text-base mb-3">
-                  Generate message from C, N, D
+                  Generate Plaintext from Ciphertext, Key, and Nonce
                 </p>
                 <div class="relative">
                   <label
                     for="decrypt-ciphertext"
                     class="leading-7 text-sm text-indigo-600"
-                    >Ciphertext (C)</label
+                    >Ciphertext</label
                   >
                   <input
                     id="decrypt-ciphertext"
@@ -282,7 +268,7 @@
                   <label
                     for="decrypt-modulo"
                     class="leading-7 text-sm text-indigo-600"
-                    >Modulo (N)</label
+                    >Key</label
                   >
                   <input
                     id="decrypt-modulo"
@@ -294,7 +280,7 @@
                   <label
                     for="decrypt-privkey"
                     class="leading-7 text-sm text-indigo-600"
-                    >Private Key (D)</label
+                    >Nonce</label
                   >
                   <input
                     id="decrypt-privkey"
@@ -311,7 +297,7 @@
                   <label
                     for="decrypt-ciphertext"
                     class="leading-7 text-sm text-indigo-600"
-                    >Message (M)</label
+                    >Plaintext</label
                   >
                   <p
                     id="decrypt-ciphertext"
@@ -334,7 +320,7 @@
         >
           <div class="w-7 h-7 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-5 h-5 display-block m-1">
-              <img src="../images/symbols/shield.png" />
+              <img src="../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-l">Encrypt Hub</span>
@@ -361,7 +347,7 @@
             class="text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../images/social_logos/github.png" />
+              <img src="../../images/social_logos/github.png" />
             </div>
           </a>
           <a
@@ -370,7 +356,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../images/social_logos/twitter.png" />
+              <img src="../../images/social_logos/twitter.png" />
             </div>
           </a>
           <a
@@ -379,7 +365,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../images/social_logos/instagram.png" />
+              <img src="../../images/social_logos/instagram.png" />
             </div>
           </a>
           <a
@@ -388,7 +374,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../images/social_logos/linkedin.png" />
+              <img src="../../images/social_logos/linkedin.png" />
             </div>
           </a>
         </span>
