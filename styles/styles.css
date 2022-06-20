@@ -1,0 +1,9 @@
+hr {
+  border: none;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5%;
+  height: 2px;
+  background-size: 40px 40px;
+  background-color: rgb(107 114 128);
+}
