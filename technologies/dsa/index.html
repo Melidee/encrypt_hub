@@ -107,7 +107,11 @@
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              Digital signing starts 
+              1) Generate private and public keys, then share the public key to
+              the indended reciever of the document <br />
+              2) Sign the document with the private key of the sender <br />
+              3) Send the newly signed document to the reciever <br />
+              4) The reciever verifies the document using the senders public key <br>
             </p>
           </div>
         </div>
@@ -121,18 +125,7 @@
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              CFB) Cipher FeedBack is an AES mode which does not need padding,
-              and uses ciphertext feedback to encode other blocks, it is
-              generally secure but can be insecure to forging and bad blocks
-              corrupt all future blocks<br />
-              OFB) output feedback creates a stream independent of the
-              plaintext, it needs to create an independent nonce or IV for each
-              message. It is generally secure and bad bits dont affect other
-              bits.<br />
-              CTR) Counter mode works by encoding the blocks using a count and
-              it is the fastest mode, it is not affected downstream by broken
-              blocks, it is generally very secure, but the counter must be
-              changed at times to maintain security<br />
+              Asymmetric encryption, like RSA, is sometimes confused with public key encryption, this is because of two 
             </p>
           </div>
         </div>
