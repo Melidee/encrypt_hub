@@ -1,4 +1,4 @@
-package encrypthub
+package main
 
 import (
 	"crypto"
@@ -15,6 +15,13 @@ import (
 	"io"
 	"math/big"
 )
+
+func main() {
+	msg := "Hello"
+	Signature, Y := dsaSign(msg)
+	result := dsaVerify(msg, Signature, Y)
+	fmt.Println(result)
+}
 
 func b64Encode(data []byte) string {
 	dst := make([]byte, base64.StdEncoding.EncodedLen(len(data)))
@@ -94,7 +101,7 @@ func hashSha256(input string) string {
 	return hex.EncodeToString(hash[:])
 }
 
-func rsaEncrypt(input string) (ciphertext string, privkey *rsa.PrivateKey) {
+func rsaEncrypt(m string) (c string, n *big.Int, e int, d *big.Int) {
 
 	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
@@ -107,20 +114,33 @@ func rsaEncrypt(input string) (ciphertext string, privkey *rsa.PrivateKey) {
 		sha256.New(),
 		rand.Reader,
 		&publicKey,
-		[]byte(input),
+		[]byte(m),
 		nil)
 	if err != nil {
 		panic(err)
 	}
 
-	return b64Encode(encryptedBytes), privateKey
+	C := b64Encode(encryptedBytes)
+	N := publicKey.N
+	E := publicKey.E
+	D := privateKey.D
+
+	return C, N, E, D
 }
 
-func rsaDecrypt(input string, privateKey *rsa.PrivateKey) string {
+func rsaDecrypt(c string, n *big.Int, e int, d *big.Int) string {
+
+	privateKey := rsa.PrivateKey{
+		PublicKey: rsa.PublicKey{
+			N: n,
+			E: e,
+		},
+		D: d,
+	}
 
 	decryptedBytes, err := privateKey.Decrypt(
 		nil,
-		[]byte(b64Decode(input)),
+		[]byte(b64Decode(c)),
 		&rsa.OAEPOptions{Hash: crypto.SHA256})
 	if err != nil {
 		panic(err)
@@ -129,7 +149,7 @@ func rsaDecrypt(input string, privateKey *rsa.PrivateKey) string {
 	return string(decryptedBytes)
 }
 
-func dsaSign(input string) (sign string, keys dsa.PublicKey) {
+func dsaSign(msg string) (signature string, y *big.Int) {
 
 	params := new(dsa.Parameters)
 	if err := dsa.GenerateParameters(params, rand.Reader, dsa.L1024N160); err != nil {
@@ -144,7 +164,7 @@ func dsaSign(input string) (sign string, keys dsa.PublicKey) {
 
 	h := sha256.New()
 
-	io.WriteString(h, input)
+	io.WriteString(h, msg)
 	signhash := h.Sum(nil)
 
 	r, s, err := dsa.Sign(rand.Reader, privatekey, signhash)
@@ -154,11 +174,18 @@ func dsaSign(input string) (sign string, keys dsa.PublicKey) {
 
 	sig := r.Bytes()
 	sig = append(sig, s.Bytes()...)
-	signature := b64Encode(sig)
-	return signature, pubkey
+	Signature := b64Encode(sig)
+
+	Y := pubkey.Y
+
+	return Signature, Y
 }
 
-func dsaVerify(msg string, signature string, pubkey dsa.PublicKey) bool {
+func dsaVerify(msg string, signature string, y *big.Int) bool {
+
+	pubkey := dsa.PublicKey{
+		Y: y,
+	}
 
 	signhash := sha256.Sum256([]byte(msg))
 

@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encrypt Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../../scripts/wasm_exec.js"></script>
   </head>
   <body class="h-screen justify-between">
-    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../../styles/styles.css" />
     <header class="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
       <div
         class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       >
         <a
-          href="../../"
+          href="../../index.html"
           class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
         >
           <div class="w-9 h-9 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-7 h-7 display-block m-1">
-              <img src="../../images/symbols/shield.png" />
+              <img src="../../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-xl">Encrypt Hub</span>
@@ -52,7 +53,7 @@
       <hr />
       <img
         class="mx-auto mb-10"
-        src="../../images/diagrams/symmetric-encryption-diagram.png"
+        src="../../../images/diagrams/symmetric-encryption-diagram.png"
         alt=""
       />
       <hr />
@@ -174,7 +175,7 @@
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
                 <div class="w-12">
-                  <img src="../../images/symbols/lock-closed.svg" alt="" />
+                  <img src="../../../images/symbols/lock-closed.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
@@ -189,14 +190,17 @@
                     >Plaintext</label
                   >
                   <input
-                    id="message"
-                    name="message"
+                    id="plaintext"
+                    name="plaintext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
                 <button
+                  id="generate"
+                  name="generate"
                   class="flex mx-right mt-3 mb-3 text-white bg-indigo-500 border-0 px-8 py-1 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                 >
+
                   Generate
                 </button>
                 <div class="relative">
@@ -204,8 +208,8 @@
                     >Ciphertext</label
                   >
                   <input
-                    id="modulo"
-                    name="modulo"
+                    id="ciphertext"
+                    name="ciphertext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -214,8 +218,8 @@
                     >Key</label
                   >
                   <input
-                    id="pubkey"
-                    name="pubkey"
+                    id="privkey"
+                    name="privkey"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -242,7 +246,7 @@
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
                 <div class="w-11">
-                  <img src="../../images/symbols/lock-open.svg" alt="" />
+                  <img src="../../../images/symbols/lock-open.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
@@ -320,7 +324,7 @@
         >
           <div class="w-7 h-7 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-5 h-5 display-block m-1">
-              <img src="../../images/symbols/shield.png" />
+              <img src="../../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-l">Encrypt Hub</span>
@@ -347,7 +351,7 @@
             class="text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/github.png" />
+              <img src="../../../images/social_logos/github.png" />
             </div>
           </a>
           <a
@@ -356,7 +360,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/twitter.png" />
+              <img src="../../../images/social_logos/twitter.png" />
             </div>
           </a>
           <a
@@ -365,7 +369,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/instagram.png" />
+              <img src="../../../images/social_logos/instagram.png" />
             </div>
           </a>
           <a
@@ -374,7 +378,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/linkedin.png" />
+              <img src="../../../images/social_logos/linkedin.png" />
             </div>
           </a>
         </span>

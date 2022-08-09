@@ -1,4 +1,4 @@
-package encrypthub
+package main
 
 import "testing"
 
