@@ -7,6 +7,32 @@
     <title>Encrypt Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../../scripts/wasm_exec.js"></script>
+    <Script>
+      const go = new Go();
+      const WASM_URL = '../../../scripts/encrypt_hub.wasm';
+
+      var wasm;
+
+      if ('instantiateStreaming' in WebAssembly) {
+        WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
+          wasm = obj.instance;
+          go.run(wasm);
+        })
+      } else {
+        fetch(WASM_URL).then(resp =>
+          resp.arrayBuffer()
+        ).then(bytes =>
+          WebAssembly.instantiate(bytes, go.importObject).then(function (obj) {
+            wasm = obj.instance;
+            go.run(wasm);
+          })
+        )
+      }
+
+      function aesEncryptButton() {
+        
+      }
+    </Script>
   </head>
   <body class="h-screen justify-between">
     <link rel="stylesheet" type="text/css" href="../../../styles/styles.css" />
@@ -229,11 +255,11 @@
                     class="leading-7 text-sm text-indigo-600"
                     >Nonce</label
                   >
-                  <p
+                  <input
                     id="encrypt-ciphertext"
                     name="ciphertext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  ></p>
+                  ></input>
                 </div>
               </div>
             </div>
@@ -303,11 +329,11 @@
                     class="leading-7 text-sm text-indigo-600"
                     >Plaintext</label
                   >
-                  <p
+                  <input
                     id="decrypt-ciphertext"
                     name="ciphertext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  ></p>
+                  ></input>
                 </div>
               </div>
             </div>

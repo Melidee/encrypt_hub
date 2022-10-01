@@ -14,22 +14,13 @@ import (
 	"fmt"
 	"io"
 	"math/big"
-	"syscall/js"
 )
 
 func main() {
-	c := make(chan int)
-
-	js.Global().Set("aesEncrypt", js.FuncOf(encryptAes))
-	js.Global().Set("aesDecrypt", js.FuncOf(decryptAes))
-	js.Global().Set("hashSha256", js.FuncOf(hashSha256))
-	js.Global().Set("hashMd5", js.FuncOf(hashMd5))
-	js.Global().Set("encryptRsa", js.FuncOf(encryptRsa))
-	js.Global().Set("decryptRsa", js.FuncOf(decryptRsa))
-	js.Global().Set("signDsa", js.FuncOf(signDsa))
-	js.Global().Set("verifyDsa", js.FuncOf(verifyDsa))
-
-	<-c
+	msg := "Hello"
+	Signature, Y := dsaSign(msg)
+	result := dsaVerify(msg, Signature, Y)
+	fmt.Println(result)
 }
 
 func b64Encode(data []byte) string {
@@ -50,12 +41,12 @@ func b64Decode(input string) []byte {
 	return dst[:]
 }
 
-func encryptAes(this js.Value, inputs []js.Value) interface{} {
+func aesEncrypt(message string) (ciphertext string, key string) {
 
 	keyBytes := make([]byte, 32)
 	rand.Read(keyBytes)
 
-	byteMsg := []byte(inputs[0].String())
+	byteMsg := []byte(message)
 	block, err := aes.NewCipher(keyBytes)
 	if err != nil {
 		panic(err)
@@ -70,15 +61,10 @@ func encryptAes(this js.Value, inputs []js.Value) interface{} {
 	stream := cipher.NewCFBEncrypter(block, iv)
 	stream.XORKeyStream(cipherText[aes.BlockSize:], byteMsg)
 
-	return map[string]interface{}{
-		"ciphertext": b64Encode(cipherText),
-		"key":        b64Encode(keyBytes),
-	}
+	return b64Encode(cipherText), b64Encode(keyBytes)
 }
 
-func decryptAes(this js.Value, inputs []js.Value) interface{} {
-	ciphertext := inputs[0].String()
-	key := inputs[1].String()
+func aesDecrypt(ciphertext string, key string) string {
 
 	keyBytes := b64Decode(key)
 
@@ -105,17 +91,18 @@ func decryptAes(this js.Value, inputs []js.Value) interface{} {
 	return string(cipherText)
 }
 
-func hashSha256(this js.Value, inputs []js.Value) interface{} {
-	hash := sha256.Sum256([]byte(inputs[0].String()))
+func hashMD5(input string) string {
+	hash := md5.Sum([]byte(input))
 	return hex.EncodeToString(hash[:])
 }
 
-func hashMd5(this js.Value, inputs []js.Value) interface{} {
-	hash := md5.Sum([]byte(inputs[0].String()))
+func hashSha256(input string) string {
+	hash := sha256.Sum256([]byte(input))
 	return hex.EncodeToString(hash[:])
 }
 
-func encryptRsa(this js.Value, inputs []js.Value) interface{} {
+func rsaEncrypt(m string) (c string, n *big.Int, e int, d *big.Int) {
+
 	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
 		panic(err)
@@ -127,7 +114,7 @@ func encryptRsa(this js.Value, inputs []js.Value) interface{} {
 		sha256.New(),
 		rand.Reader,
 		&publicKey,
-		[]byte(inputs[0].String()),
+		[]byte(m),
 		nil)
 	if err != nil {
 		panic(err)
@@ -135,47 +122,34 @@ func encryptRsa(this js.Value, inputs []js.Value) interface{} {
 
 	C := b64Encode(encryptedBytes)
 	N := publicKey.N
+	E := publicKey.E
 	D := privateKey.D
 
-	return map[string]interface{}{
-		"C": C,
-		"N": N.String(),
-		"E": "65537",
-		"D": D.String(),
-	}
+	return C, N, E, D
 }
 
-func decryptRsa(this js.Value, inputs []js.Value) interface{} {
-	C := inputs[0].String()
-	N := new(big.Int)
-	N.SetString(inputs[1].String(), 10)
-	E := 65535
-	D := new(big.Int)
-	D.SetString(inputs[2].String(), 10)
-
+func rsaDecrypt(c string, n *big.Int, e int, d *big.Int) string {
 
 	privateKey := rsa.PrivateKey{
 		PublicKey: rsa.PublicKey{
-			N: N,
-			E: E,
+			N: n,
+			E: e,
 		},
-		D: D,
+		D: d,
 	}
 
 	decryptedBytes, err := privateKey.Decrypt(
 		nil,
-		[]byte(b64Decode(C)),
+		[]byte(b64Decode(c)),
 		&rsa.OAEPOptions{Hash: crypto.SHA256})
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
-	return b64Encode(decryptedBytes)
+	return string(decryptedBytes)
 }
 
-func signDsa(this js.Value, inputs []js.Value) interface{} {
-
-	msg := inputs[0].String()
+func dsaSign(msg string) (signature string, y *big.Int) {
 
 	params := new(dsa.Parameters)
 	if err := dsa.GenerateParameters(params, rand.Reader, dsa.L1024N160); err != nil {
@@ -200,20 +174,14 @@ func signDsa(this js.Value, inputs []js.Value) interface{} {
 
 	sig := r.Bytes()
 	sig = append(sig, s.Bytes()...)
+	Signature := b64Encode(sig)
 
-	return map[string]interface{}{
-		"Signature": b64Encode(sig),
-		"PubKey": b64Encode(pubkey.Y.Bytes()),
-	}
+	Y := pubkey.Y
+
+	return Signature, Y
 }
 
-func verifyDsa(this js.Value, inputs []js.Value) interface{} {
-
-	msg := inputs[0].String()
-	signature := inputs[0].String()
-	yBytes := b64Decode(inputs[2].String())
-	y := new(big.Int)
-	y.SetBytes(yBytes)
+func dsaVerify(msg string, signature string, y *big.Int) bool {
 
 	pubkey := dsa.PublicKey{
 		Y: y,

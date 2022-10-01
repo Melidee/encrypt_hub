@@ -6,20 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encrypt Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../../scripts/wasm_exec.js"></script>
+    <Script>
+      
+    </Script>
   </head>
   <body class="h-screen justify-between">
-    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../../styles/styles.css" />
     <header class="text-gray-400 bg-gray-900 body-font sticky top-0 z-50">
       <div
         class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       >
         <a
-          href="../../"
+          href="../../index.html"
           class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
         >
           <div class="w-9 h-9 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-7 h-7 display-block m-1">
-              <img src="../../images/symbols/shield.png" />
+              <img src="../../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-xl">Encrypt Hub</span>
@@ -40,19 +44,19 @@
           <h2
             class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-2"
           >
-            Secure Information Transfer Immune to Middlemen
+            Consistent one way encoding of data
           </h2>
           <h1
             class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
           >
-            RSA: Public-Key Cryptography
+            SHA2: Securely Hash Information
           </h1>
         </div>
       </div>
       <hr />
       <img
-        class="mx-auto my-8"
-        src="../../images/diagrams/asymmetric-encryption-diagram.png"
+        class="mx-auto my-14 w-2/3"
+        src="../../../images/diagrams/hashing-diagram.png"
         alt=""
       />
       <hr />
@@ -61,14 +65,16 @@
           <h2
             class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
           >
-            What is RSA actually
+            What is SHA2 actually
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              RSA is a form of public-key cryptography theorized by
-              cryptographers Ron Rivest, Adi Shamir, and Leonard Adleman, it is
-              used to securely share information in scenarios that may be prone
-              to interception from malicious attackers
+              SHA2, the Secure Hash Algorithm 2, is an algorithm made to create
+              256 bit hashes from a given input, a hash is a seemingly random
+              string of bits that has some very specific properties, they can be
+              generated from a file or other string of bytes that is any size,
+              and always produces the same output given the same input, and is
+              incredibly difficult to reverse the input from a given hash
             </p>
           </div>
         </div>
@@ -78,14 +84,15 @@
           <h2
             class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
           >
-            How is RSA used
+            How is SHA2 used
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              RSA works through a system of public and private keys, for
-              example, if you wanted to send a message in RSA you would encrypt
-              it with the reciever's public key, then send it to them, and only
-              them with their private key could decrypt it
+              SHA2 is used in a variety of cryptographic use cases, for example
+              it can be used to hide passwords so they arent stored in
+              plaintext, it can be used to verify a file has not been changed or
+              tampered with, and it can be used as a part of another algorithm,
+              for example the DSA algorithm uses it when signing documents
             </p>
           </div>
         </div>
@@ -95,59 +102,53 @@
           <h2
             class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
           >
-            What are the parts of RSA
+            How does it hide passwords
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              RSA is made up of many components, denoted by symbols and letters,
-              E is the public key, it is most commonly 65537, D is the private
-              key to decrypt the message, C is the ciphertext, or the number
-              which represents the encrypted message, P & Q are large prime
-              numbers used to generate the modulo, N is the modulo, a number
-              known by both parties to facilitate the transaction
+              Passwords are incredibly important across computing and the
+              internet. SHA2 is the most modern hash used to hide passwords and
+              protect them in the case of a breach, it works like this, a user
+              enters their password when creating their account, then the
+              password is hashed before being put into a database, when the user
+              goes to login the password is first hashed, then that hash is
+              compared to the database to check if they match, in the case of a
+              database breach, the attacker would not have direct access to any
+              of the passwords, just the hashes, which arent useful on their own
             </p>
           </div>
         </div>
       </section>
-      <section class="text-gray-600 body-font">
+      <section class="text-gray-600 body-font mb-8">
         <div class="container px-5 py-5 mx-auto flex flex-wrap">
           <h2
             class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
           >
-            How does RSA encryption work
+            How does it verify documents
           </h2>
           <div class="md:w-3/5 md:pl-6">
             <p class="leading-relaxed text-base">
-              1) obtain N and E from the recipient <br />
-              2) takes a number M as the message which is greater than one and
-              less than the modulo <br />
-              3) computes the ciphertext as ((M ^ E) mod N) (mod finds the
-              remainder of the numbers) <br />
+              When a sensitive file or document is being sent across an insecure
+              medium like the internet, it is important to know that the file is
+              not being tampered with by a third party, hashes help with this
+              issue by allowing you to verify the document by hashing it,
+              suppose you wanted to secretly send the word "color" across an
+              insecure path, you could create a hash in an algorithm called MD5
+              which results in "70dda5dfb8053dc6d1c492574bce9bfd" as an output,
+              but if the string was tampered with to "colour" you would get a
+              hash like "296cc9a02b167493f6ff885c48ca71ff", the host recieving
+              this message could hash it and realize that the hash is different
+              than the expected one, and determine that it must have been
+              changed
             </p>
           </div>
         </div>
       </section>
-      <section class="text-gray-600 body-font">
-        <div class="container px-5 py-5 mx-auto flex flex-wrap">
-          <h2
-            class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"
-          >
-            How does RSA Decryption Work
-          </h2>
-          <div class="md:w-3/5 md:pl-6">
-            <p class="leading-relaxed text-base">
-              1) Obtain the ciphertext C from the sender <br />
-              2) Uses the known D to compute the message M as ((C ^ D) mod N)
-              <br />
-              3) The reciever now knows the message M <br />
-            </p>
-          </div>
-        </div>
-      </section>
+      <hr />
     </section>
     <section class="text-gray-600 body-font">
-      <div class="container px-5 mb-24 mx-auto flex flex-grow">
-        <div class="flex flex-grow -m-4">
+      <div class="container px-5 mb-24 mx-auto flex flex-wrap">
+        <div class="flex flex-wrap -m-4">
           <div class="p-4 lg:w-1/2 md:w-full">
             <div
               class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
@@ -155,63 +156,44 @@
               <div
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
-                <div class="w-11">
-                  <img src="../../images/symbols/lock-closed.svg" alt="" />
+                <div class="w-12">
+                  <img src="../../../images/symbols/lock-closed.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-0">
-                  Plaintext RSA Encryption
+                  SHA2 Hashing
                 </h2>
                 <p class="leading-relaxed text-base mb-3">
-                  Generate ciphertext from M, N, E <br />
+                  Generate SHA2 hash from string
                 </p>
                 <div class="relative">
                   <label for="message" class="leading-7 text-sm text-indigo-600"
-                    >Message (M)</label
+                    >Plaintext</label
                   >
                   <input
-                    id="message"
-                    name="message"
+                    id="sha2-plaintext"
+                    name="sha2-plaintext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
                 <button
+                  id="sha2-generate"
+                  name="sha2-generate"
                   class="flex mx-right mt-3 mb-3 text-white bg-indigo-500 border-0 px-8 py-1 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                  onclick="hashSha2Button"
                 >
                   Generate
                 </button>
                 <div class="relative">
                   <label for="modulo" class="leading-7 text-sm text-indigo-600"
-                    >Modulo (N)</label
+                    >Hash</label
                   >
                   <input
-                    id="modulo"
-                    name="modulo"
+                    id="sha2-hash"
+                    name="sha2-hash"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
-                </div>
-                <div class="relative">
-                  <label for="pubkey" class="leading-7 text-sm text-indigo-600"
-                    >Public Key (E)</label
-                  >
-                  <input
-                    id="pubkey"
-                    name="pubkey"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
-                <div class="relative">
-                  <label
-                    for="encrypt-ciphertext"
-                    class="leading-7 text-sm text-indigo-600"
-                    >Ciphertext (C)</label
-                  >
-                  <p
-                    id="encrypt-ciphertext"
-                    name="ciphertext"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  ></p>
                 </div>
               </div>
             </div>
@@ -223,50 +205,26 @@
               <div
                 class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0"
               >
-                <div class="w-10">
-                  <img src="../../images/symbols/lock-open.svg" alt="" />
+                <div class="w-11">
+                  <img src="../../../images/symbols/lock-closed.svg" alt="" />
                 </div>
               </div>
               <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-0">
-                  Plaintext RSA Decryption
+                  MD5 Hashing
                 </h2>
                 <p class="leading-relaxed text-base mb-3">
-                  Generate message from C, N, D
+                  Generate MD5 hash from string
                 </p>
-                <div class="relative">
-                  <label
-                    for="decrypt-ciphertext"
-                    class="leading-7 text-sm text-indigo-600"
-                    >Ciphertext (C)</label
-                  >
-                  <input
-                    id="decrypt-ciphertext"
-                    name="ciphertext"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
-                <div class="relative">
-                  <label
-                    for="decrypt-modulo"
-                    class="leading-7 text-sm text-indigo-600"
-                    >Modulo (N)</label
-                  >
-                  <input
-                    id="decrypt-modulo"
-                    name="modulo"
-                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
                 <div class="relative">
                   <label
                     for="decrypt-privkey"
                     class="leading-7 text-sm text-indigo-600"
-                    >Private Key (D)</label
+                    >Plaintext</label
                   >
                   <input
-                    id="decrypt-privkey"
-                    name="pubkey"
+                    id="md5-plaintext"
+                    name="md5-plaintext"
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-12 text-base outline-none text-indigo-500 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -279,7 +237,7 @@
                   <label
                     for="decrypt-ciphertext"
                     class="leading-7 text-sm text-indigo-600"
-                    >Message (M)</label
+                    >Hash</label
                   >
                   <p
                     id="decrypt-ciphertext"
@@ -302,7 +260,7 @@
         >
           <div class="w-7 h-7 rounded-full bg-zinc-100 display-block margin-0">
             <div class="w-5 h-5 display-block m-1">
-              <img src="../../images/symbols/shield.png" />
+              <img src="../../../images/symbols/shield.png" />
             </div>
           </div>
           <span class="ml-3 text-l">Encrypt Hub</span>
@@ -329,7 +287,7 @@
             class="text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/github.png" />
+              <img src="../../../images/social_logos/github.png" />
             </div>
           </a>
           <a
@@ -338,7 +296,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/twitter.png" />
+              <img src="../../../images/social_logos/twitter.png" />
             </div>
           </a>
           <a
@@ -347,7 +305,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/instagram.png" />
+              <img src="../../../images/social_logos/instagram.png" />
             </div>
           </a>
           <a
@@ -356,7 +314,7 @@
             class="ml-3 text-gray-400"
           >
             <div class="w-6 h-6 display-block">
-              <img src="../../images/social_logos/linkedin.png" />
+              <img src="../../../images/social_logos/linkedin.png" />
             </div>
           </a>
         </span>
