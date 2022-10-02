@@ -20,8 +20,8 @@ import (
 func main() {
 	c := make(chan int)
 
-	js.Global().Set("aesEncrypt", js.FuncOf(encryptAes))
-	js.Global().Set("aesDecrypt", js.FuncOf(decryptAes))
+	js.Global().Set("encryptAes", js.FuncOf(encryptAes))
+	js.Global().Set("decryptAes", js.FuncOf(decryptAes))
 	js.Global().Set("hashSha256", js.FuncOf(hashSha256))
 	js.Global().Set("hashMd5", js.FuncOf(hashMd5))
 	js.Global().Set("encryptRsa", js.FuncOf(encryptRsa))
@@ -153,7 +153,6 @@ func decryptRsa(this js.Value, inputs []js.Value) interface{} {
 	D := new(big.Int)
 	D.SetString(inputs[2].String(), 10)
 
-
 	privateKey := rsa.PrivateKey{
 		PublicKey: rsa.PublicKey{
 			N: N,
@@ -170,7 +169,7 @@ func decryptRsa(this js.Value, inputs []js.Value) interface{} {
 		fmt.Println(err)
 	}
 
-	return b64Encode(decryptedBytes)
+	return string(decryptedBytes[:])
 }
 
 func signDsa(this js.Value, inputs []js.Value) interface{} {
@@ -203,17 +202,16 @@ func signDsa(this js.Value, inputs []js.Value) interface{} {
 
 	return map[string]interface{}{
 		"Signature": b64Encode(sig),
-		"PubKey": b64Encode(pubkey.Y.Bytes()),
+		"PubKey":    pubkey.Y.String(),
 	}
 }
 
+//func dsaVerify(msg string, signature string, y *big.Int) bool {
 func verifyDsa(this js.Value, inputs []js.Value) interface{} {
-
 	msg := inputs[0].String()
-	signature := inputs[0].String()
-	yBytes := b64Decode(inputs[2].String())
+	signature := inputs[1].String()
 	y := new(big.Int)
-	y.SetBytes(yBytes)
+	y.SetString(inputs[2].String(), 10)
 
 	pubkey := dsa.PublicKey{
 		Y: y,
